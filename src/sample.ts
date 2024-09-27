@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require("dotenv").config();
-import path from "node:path";
 import { glob, readFile } from "node:fs/promises";
 import { Document, VectorStoreIndex } from "llamaindex";
 import { applyOllamaGlobals } from "./ollamaGlobalSettings";
