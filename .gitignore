@@ -2,3 +2,4 @@
 /storage/
 /.idea/
 /.eslint-cache/
+/.env
