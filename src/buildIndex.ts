@@ -13,7 +13,7 @@ const main = async () => {
     const essay = await fs.readFile(path, "utf-8");
 
     // Create Document object with essay
-    const document = new Document({ text: essay, id_: path });
+    const document = new Document({ text: essay, id_: path, metadata: { name: path } });
 
     const storageContext: StorageContext = await getStorageContext();
 
