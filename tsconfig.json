@@ -1,0 +1,10 @@
+{
+    "extends": "./node_modules/@tsconfig/node20/tsconfig.json",
+    "compilerOptions": {
+        "strict": false,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "noEmit": true
+    },
+    "include": ["./src/**/*", "./test/**/*", "./integration_test/**/*", "jest.config.ts", "./*.ts"]
+}
