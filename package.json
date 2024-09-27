@@ -6,6 +6,7 @@
   "scripts": {
     "build-index": "node -r ts-node/register/transpile-only src/buildIndex.ts",
     "query": "node -r ts-node/register/transpile-only src/query.ts",
+    "milvus:setup": "docker compose -f milvus-standalone-docker-compose.yml up -d",
     "milvus:create-db": "node -r ts-node/register/transpile-only src/vectorDb/createDatabase.ts",
     "milvus:drop-collection": "node -r ts-node/register/transpile-only src/vectorDb/dropCollection.ts",
     "eslint": "eslint --cache --cache-location ./.eslint-cache/ --cache-strategy content src/",
