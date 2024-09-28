@@ -1,21 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require("dotenv").config();
-import { glob, readFile } from "node:fs/promises";
-import { Document, VectorStoreIndex } from "llamaindex";
+import { getDocuments } from "./dataSet";
+import type { Document } from "llamaindex";
+import { VectorStoreIndex } from "llamaindex";
 import { applyOllamaGlobals } from "./ollamaGlobalSettings";
 
 applyOllamaGlobals();
 
-const { DOCUMENTS } = process.env;
-
 const main = async () => {
-    let documents: Document[] = [];
-    for await (const entry of glob(DOCUMENTS + "/*.txt")) {
-        console.log(`Reading ${entry}`);
-        const lyrics = await readFile(entry, "utf-8");
-        documents.push(new Document({ text: lyrics, id_: entry }));
-    }
-
+    const documents: Document[] = await getDocuments();
+    
     // Split text and create embeddings. Store them in a VectorStoreIndex
     const index: VectorStoreIndex = await VectorStoreIndex.fromDocuments(documents);
 
