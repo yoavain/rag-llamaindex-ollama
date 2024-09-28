@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require("dotenv").config();
-
-import { getDocuments } from "./dataSet";
+import type { SongMetadata } from "./dataSet";
+import { SAMPLE_QUERY, getDocuments } from "./dataSet";
 import type { Document } from "llamaindex";
 import { VectorStoreIndex } from "llamaindex";
 import { getStorageContext } from "./store";
@@ -11,7 +11,7 @@ import type { StorageContext } from "llamaindex/storage/StorageContext";
 applyOllamaGlobals();
 
 const main = async () => {
-    const documents: Document[] = await getDocuments();
+    const documents: Document<SongMetadata>[] = await getDocuments();
     const storageContext: StorageContext = await getStorageContext();
 
     // Split text and create embeddings. Store them in a VectorStoreIndex
@@ -23,7 +23,7 @@ const main = async () => {
     const queryEngine = index.asQueryEngine();
 
     const response = await queryEngine.query({
-        query: "מה אני עושה למעני?"
+        query: SAMPLE_QUERY
     });
 
     // Output response
