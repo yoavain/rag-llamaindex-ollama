@@ -14,7 +14,8 @@ export const getDocuments = async (): Promise<Document<SongMetadata>[]> => {
         console.log(`Reading ${entry}`);
         const lyrics = await readFile(entry, "utf-8");
         const name = path.basename(entry, ".txt");
-        documents.push(new Document<SongMetadata>({ text: lyrics, id_: entry, metadata: { name } }));
+        const document = new Document<SongMetadata>({ text: lyrics, id_: entry, metadata: { name } });
+        documents.push(document);
     }
     return documents;
 };

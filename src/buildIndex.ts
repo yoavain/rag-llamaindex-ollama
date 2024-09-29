@@ -2,8 +2,8 @@
 require("dotenv").config();
 import type { SongMetadata } from "./dataSet";
 import { SAMPLE_QUERY, getDocuments } from "./dataSet";
-import type { Document } from "llamaindex";
-import { VectorStoreIndex } from "llamaindex";
+import type { Document, NodeWithScore } from "llamaindex";
+import { MetadataMode, VectorStoreIndex } from "llamaindex";
 import { getStorageContext } from "./store";
 import { applyOllamaGlobals } from "./ollamaGlobalSettings";
 import type { StorageContext } from "llamaindex/storage/StorageContext";
@@ -22,12 +22,21 @@ const main = async () => {
     // Query the index
     const queryEngine = index.asQueryEngine();
 
-    const response = await queryEngine.query({
+    const { response, sourceNodes } = await queryEngine.query({
         query: SAMPLE_QUERY
     });
 
     // Output response
-    console.log(response.toString());
+    // Output response with sources
+    console.log(response);
+
+    if (sourceNodes) {
+        sourceNodes.forEach((source: NodeWithScore, index: number) => {
+            console.log(
+                `\n${index}: Score: ${source.score} - ${source.node.getContent(MetadataMode.NONE).substring(0, 50)}...\n`
+            );
+        });
+    }
 };
 
 main().catch(console.error);
