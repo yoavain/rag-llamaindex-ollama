@@ -12,7 +12,8 @@
         "milvus:drop-collection": "node -r ts-node/register/transpile-only src/vectorDb/dropCollection.ts",
         "eslint": "eslint --cache --cache-location ./.eslint-cache/ --cache-strategy content src/",
         "eslint:fix": "npm run eslint -- --fix",
-        "demo": "node -r ts-node/register/transpile-only src/demo/index.ts"
+        "demo": "node -r ts-node/register/transpile-only src/demo/index.ts",
+        "miluse:test": "node -r ts-node/register/transpile-only src/vectorDb/testMilvus.ts"
     },
     "keywords": [],
     "author": "",
