@@ -27,13 +27,13 @@
         "@xenova/transformers": "2.17.2",
         "@zilliz/milvus2-sdk-node": "2.4.9",
         "dotenv": "16.4.5",
-        "llamaindex": "0.6.9"
+        "llamaindex": "0.6.11"
     },
     "devDependencies": {
         "@tsconfig/node20": "20.1.4",
-        "@types/node": "22.7.3",
-        "@typescript-eslint/eslint-plugin": "8.7.0",
-        "@typescript-eslint/parser": "8.7.0",
+        "@types/node": "22.7.4",
+        "@typescript-eslint/eslint-plugin": "8.8.0",
+        "@typescript-eslint/parser": "8.8.0",
         "eslint": "8.57.1",
         "eslint-plugin-import": "2.30.0",
         "eslint-plugin-jest": "28.8.3",
