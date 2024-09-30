@@ -18,9 +18,10 @@ const main = async () => {
     const index: VectorStoreIndex = await VectorStoreIndex.fromDocuments(documents, { storageContext });
 
     // todo - remove this
+    const retriever = await index.asRetriever({ similarityTopK: 20 });
 
     // Query the index
-    const queryEngine = index.asQueryEngine();
+    const queryEngine = index.asQueryEngine({ retriever });
 
     const { response, sourceNodes } = await queryEngine.query({
         query: SAMPLE_QUERY
