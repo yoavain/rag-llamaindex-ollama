@@ -8,6 +8,7 @@
         "query": "node -r ts-node/register/transpile-only src/query.ts",
         "ref": "node -r ts-node/register/transpile-only src/sample.ts",
         "milvus:setup": "docker compose -f milvus-standalone-docker-compose.yml up -d",
+        "milvus:cli": "docker run --name milvus-cli -it zilliz/milvus_cli:v1.0.0",
         "milvus:create-db": "node -r ts-node/register/transpile-only src/vectorDb/createDatabase.ts",
         "milvus:drop-collection": "node -r ts-node/register/transpile-only src/vectorDb/dropCollection.ts",
         "eslint": "eslint --cache --cache-location ./.eslint-cache/ --cache-strategy content src/",
