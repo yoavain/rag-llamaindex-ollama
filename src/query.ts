@@ -1,26 +1,34 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require("dotenv").config();
-import { VectorStoreIndex } from "llamaindex";
-import { getStorageContext } from "./storage/store";
+import { getStorageContext } from "./storage/storage";
+import type { NodeWithScore } from "llamaindex";
+import { MetadataMode, VectorStoreIndex } from "llamaindex";
 import { applyOllamaGlobals } from "./models/ollamaGlobalSettings";
 
 applyOllamaGlobals();
 
-const main = async () => {
-    const storageContext = await getStorageContext();
-
-    // Split text and create embeddings. Store them in a VectorStoreIndex
-    const index: VectorStoreIndex = await VectorStoreIndex.fromVectorStores(storageContext.vectorStores);
+export const query = async (externalIndex?: VectorStoreIndex) => {
+    let index: VectorStoreIndex = externalIndex;
+    if (!externalIndex) {
+        const storageContext = await getStorageContext();
+        index = await VectorStoreIndex.fromVectorStores(storageContext.vectorStores);
+    }
 
     // Query the index
     const queryEngine = index.asQueryEngine();
 
-    const response = await queryEngine.query({
+    const { response, sourceNodes } = await queryEngine.query({
         query: "What did the author do in college?"
     });
 
-    // Output response
-    console.log(response.toString());
-};
+    // Output response with sources
+    console.log(response);
 
-main().catch(console.error);
+    if (sourceNodes) {
+        sourceNodes.forEach((source: NodeWithScore, index: number) => {
+            console.log(
+                `\n${index}: Score: ${source.score} - ${source.node.getContent(MetadataMode.NONE).substring(0, 50)}...\n`
+            );
+        });
+    }
+};
