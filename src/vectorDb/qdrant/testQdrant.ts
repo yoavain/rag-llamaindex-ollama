@@ -1,8 +1,9 @@
 import fs from "node:fs/promises";
 import { Document, VectorStoreIndex } from "llamaindex";
-import { applyOllamaGlobals } from "../ollamaGlobalSettings";
-import { getStorageContext } from "../store";
+import { applyOllamaGlobals } from "../../models/ollamaGlobalSettings";
 import type { StorageContext } from "llamaindex/storage/StorageContext";
+import { getStorageContext } from "../../storage/storage";
+import { VectorStoreType } from "../vectorStoreFactory";
 
 async function main() {
     applyOllamaGlobals();
@@ -12,7 +13,7 @@ async function main() {
 
     const document = new Document({ text: essay, id_: path });
 
-    const storageContext: StorageContext = await getStorageContext();
+    const storageContext: StorageContext = await getStorageContext(VectorStoreType.QDRANT);
 
     const index = await VectorStoreIndex.fromDocuments([document], storageContext);
 

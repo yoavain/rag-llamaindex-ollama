@@ -1,6 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+require("dotenv").config();
 import { VectorStoreIndex } from "llamaindex";
-import { getStorageContext } from "./store";
-import { applyOllamaGlobals } from "./ollamaGlobalSettings";
+import { getStorageContext } from "./storage/store";
+import { applyOllamaGlobals } from "./models/ollamaGlobalSettings";
 
 applyOllamaGlobals();
 

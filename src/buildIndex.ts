@@ -1,11 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require("dotenv").config();
-import type { SongMetadata } from "./dataSet";
-import { SAMPLE_QUERY, getDocuments } from "./dataSet";
+import { getStorageContext } from "./storage/storage";
+import type { SongMetadata } from "./data/dataSet";
+import { getDocuments, SAMPLE_QUERY } from "./data/dataSet";
 import type { Document, NodeWithScore } from "llamaindex";
 import { MetadataMode, VectorStoreIndex } from "llamaindex";
-import { getStorageContext } from "./store";
-import { applyOllamaGlobals } from "./ollamaGlobalSettings";
+import { applyOllamaGlobals } from "./models/ollamaGlobalSettings";
 import type { StorageContext } from "llamaindex/storage/StorageContext";
 
 applyOllamaGlobals();
