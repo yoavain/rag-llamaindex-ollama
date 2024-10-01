@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require("dotenv").config();
+import { SAMPLE_QUERY } from "./data/dataSet";
 import { getStorageContext } from "./storage/storage";
 import type { NodeWithScore } from "llamaindex";
 import { MetadataMode, VectorStoreIndex } from "llamaindex";
@@ -18,7 +19,7 @@ export const query = async (externalIndex?: VectorStoreIndex) => {
     const queryEngine = index.asQueryEngine();
 
     const { response, sourceNodes } = await queryEngine.query({
-        query: "What did the author do in college?"
+        query: SAMPLE_QUERY
     });
 
     // Output response with sources
