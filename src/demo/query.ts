@@ -1,13 +1,11 @@
-import { MilvusVectorStore, VectorStoreIndex } from "llamaindex";
-import { getMilvusClient } from "../vectorDb/milvus";
-
-const collectionName = "movie_reviews";
+import { type QdrantVectorStore, VectorStoreIndex } from "llamaindex";
+import { getQdrantVectorStore } from "../vectorDb/qdrant";
 
 export const query = async () => {
     try {
-        const milvus = new MilvusVectorStore({ milvusClient: getMilvusClient(), collection: collectionName });
+        const vectorStore: QdrantVectorStore = getQdrantVectorStore();
 
-        const index = await VectorStoreIndex.fromVectorStore(milvus);
+        const index = await VectorStoreIndex.fromVectorStore(vectorStore);
 
         const retriever = await index.asRetriever({ similarityTopK: 20 });
 
@@ -17,7 +15,7 @@ export const query = async () => {
             query: "What is the best reviewed movie?"
         });
 
-        console.log(results.response);
+        console.log(results.message);
     }
     catch (e) {
         console.error(e);

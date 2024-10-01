@@ -1,19 +1,12 @@
-import { MilvusVectorStore, storageContextFromDefaults } from "llamaindex";
+import { storageContextFromDefaults } from "llamaindex";
 import type { StorageContext } from "llamaindex/storage/StorageContext";
-import { getMilvusClient, getMilvusCollection } from "./vectorDb/milvus";
-
-const getVectorStore = (): MilvusVectorStore => {
-    return new MilvusVectorStore({
-        milvusClient: getMilvusClient(),
-        collection: getMilvusCollection()
-    });
-};
+import { getQdrantVectorStore } from "./vectorDb/qdrant";
 
 let storageContext: StorageContext;
 export const getStorageContext = async (): Promise<StorageContext> => {
     if (!storageContext) {
         storageContext = await storageContextFromDefaults({
-            vectorStore: getVectorStore()
+            vectorStore: getQdrantVectorStore()
         });
     }
     return storageContext;

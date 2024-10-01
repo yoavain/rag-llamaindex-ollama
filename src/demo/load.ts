@@ -1,19 +1,13 @@
-import {
-    MilvusVectorStore,
-    PapaCSVReader,
-    storageContextFromDefaults,
-    VectorStoreIndex
-} from "llamaindex";
-import { getMilvusClient } from "../vectorDb/milvus";
-
-const collectionName = "movie_reviews";
+import type { QdrantVectorStore } from "llamaindex";
+import { PapaCSVReader, storageContextFromDefaults, VectorStoreIndex } from "llamaindex";
+import { getQdrantVectorStore } from "../vectorDb/qdrant";
 
 export const load = async () => {
     try {
         const reader = new PapaCSVReader(false);
         const docs = await reader.loadData("./src/demo/data/movie_reviews.csv");
 
-        const vectorStore = new MilvusVectorStore({ milvusClient: getMilvusClient(), collection: collectionName });
+        const vectorStore: QdrantVectorStore = getQdrantVectorStore();
 
         const ctx = await storageContextFromDefaults({ vectorStore });
         const index = await VectorStoreIndex.fromDocuments(docs, {

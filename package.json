@@ -6,15 +6,12 @@
     "scripts": {
         "build-index": "node -r ts-node/register/transpile-only src/buildIndex.ts",
         "query": "node -r ts-node/register/transpile-only src/query.ts",
-        "ref": "node -r ts-node/register/transpile-only src/sample.ts",
-        "milvus:setup": "docker compose -f milvus-standalone-docker-compose.yml up -d",
-        "milvus:cli": "docker run --name milvus-cli -it zilliz/milvus_cli:v1.0.0",
-        "milvus:create-db": "node -r ts-node/register/transpile-only src/vectorDb/createDatabase.ts",
-        "milvus:drop-collection": "node -r ts-node/register/transpile-only src/vectorDb/dropCollection.ts",
+        "ref": "node -r ts-node/register/transpile-only src/inMemorySample.ts",
+        "qdrant:setup": "docker run -d --name qdrant -p 6333:6333 -v qdrant_storage:/qdrant/storage qdrant/qdrant:v1.11.5",
         "eslint": "eslint --cache --cache-location ./.eslint-cache/ --cache-strategy content src/",
         "eslint:fix": "npm run eslint -- --fix",
         "demo": "node -r ts-node/register/transpile-only src/demo/index.ts",
-        "miluse:test": "node -r ts-node/register/transpile-only src/vectorDb/testMilvus.ts"
+        "qdrant:test": "node -r ts-node/register/transpile-only src/vectorDb/testQdrant.ts"
     },
     "keywords": [],
     "author": "",
@@ -25,8 +22,6 @@
         "npm": ">=10"
     },
     "dependencies": {
-        "@xenova/transformers": "2.17.2",
-        "@zilliz/milvus2-sdk-node": "2.4.9",
         "dotenv": "16.4.5",
         "llamaindex": "0.6.11"
     },
