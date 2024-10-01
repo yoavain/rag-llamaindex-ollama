@@ -13,7 +13,7 @@
         "qdrant:setup": "docker run -d --name qdrant -p 6333:6333 -v qdrant_storage:/qdrant/storage qdrant/qdrant:v1.11.5",
         "eslint": "eslint --cache --cache-location ./.eslint-cache/ --cache-strategy content src/",
         "eslint:fix": "npm run eslint -- --fix",
-        "demo": "node -r ts-node/register/transpile-only src/demo/demo.ts",
+        "demo": "node -r ts-node/register/transpile-only demo/demo.ts",
         "test:in-memory": "cross-env VECTOR_STORE_TYPE=IN_MEMORY node -r ts-node/register/transpile-only src/runInMemory.ts",
         "test:local-storage": "cross-env VECTOR_STORE_TYPE=LOCAL_STORAGE node -r ts-node/register/transpile-only src/runBuildIndex.ts && npm run test:local-storage:query-only",
         "test:local-storage:query-only": "cross-env VECTOR_STORE_TYPE=LOCAL_STORAGE node -r ts-node/register/transpile-only src/runQuery.ts",

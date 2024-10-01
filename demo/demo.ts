@@ -1,12 +1,14 @@
-import { applyOllamaGlobals } from "../models/ollamaGlobalSettings";
+import { applyOllamaGlobals } from "../src/models/ollamaGlobalSettings";
+import type { EngineResponse } from "llamaindex";
 import { PapaCSVReader, VectorStoreIndex } from "llamaindex";
-import { getStorageContext } from "../storage/storage";
+import { getStorageContext } from "../src/storage/storage";
+import { printResponse } from "../src/responseUtils";
 
 const main = async () => {
     applyOllamaGlobals();
 
     const reader = new PapaCSVReader(false);
-    const docs = await reader.loadData("./src/demo/data/movie_reviews.csv");
+    const docs = await reader.loadData("./demo/data/movie_reviews.csv");
 
     const storageContext = await getStorageContext();
     const index = await VectorStoreIndex.fromDocuments(docs, {
@@ -17,11 +19,11 @@ const main = async () => {
 
     const queryEngine = await index.asQueryEngine({ retriever });
 
-    const results = await queryEngine.query({
+    const results: EngineResponse = await queryEngine.query({
         query: "What is the best reviewed movie?"
     });
 
-    console.log(results.message);
+    printResponse(results, true);
 };
 
 main().catch(console.error);

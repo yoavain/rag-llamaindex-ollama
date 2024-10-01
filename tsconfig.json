@@ -6,5 +6,5 @@
         "allowJs": true,
         "noEmit": true
     },
-    "include": ["./src/**/*", "./test/**/*", "./integration_test/**/*", "jest.config.ts", "./*.ts"]
+    "include": ["./src/**/*", "./test/**/*", "./demo/**/*", "./*.ts"]
 }

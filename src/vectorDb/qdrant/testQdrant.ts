@@ -1,9 +1,11 @@
 import fs from "node:fs/promises";
+import type { EngineResponse } from "llamaindex";
 import { Document, VectorStoreIndex } from "llamaindex";
 import { applyOllamaGlobals } from "../../models/ollamaGlobalSettings";
 import type { StorageContext } from "llamaindex/storage/StorageContext";
 import { getStorageContext } from "../../storage/storage";
 import { VectorStoreType } from "../vectorStoreFactory";
+import { printResponse } from "../../responseUtils";
 
 async function main() {
     applyOllamaGlobals();
@@ -19,12 +21,12 @@ async function main() {
 
     const queryEngine = index.asQueryEngine();
 
-    const response = await queryEngine.query({
+    const response: EngineResponse = await queryEngine.query({
         query: "What did the author do in college?"
     });
 
     // Output response
-    console.log(response.toString());
+    printResponse(response, true);
 }
 
 main().catch(console.error);
