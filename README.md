@@ -1,4 +1,9 @@
-# RAG Using LlamaIndexTS
+# Retrieval Augmented Generation (RAG) using LlamaIndex.TS
+
+
+### Simple RAG
+
+Test use-case: Answering question about music songs lyrics
 
 
 ### Implemented vector storage: 
