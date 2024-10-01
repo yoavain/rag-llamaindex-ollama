@@ -12,7 +12,7 @@ export const query = async (externalIndex?: VectorStoreIndex) => {
     let index: VectorStoreIndex = externalIndex;
     if (!externalIndex) {
         const storageContext = await getStorageContext();
-        index = await VectorStoreIndex.fromVectorStores(storageContext.vectorStores);
+        index = await VectorStoreIndex.fromDocuments([], { storageContext });
     }
 
     // Query the index

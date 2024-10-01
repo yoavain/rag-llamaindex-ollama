@@ -15,8 +15,12 @@
         "eslint:fix": "npm run eslint -- --fix",
         "demo": "node -r ts-node/register/transpile-only src/demo/demo.ts",
         "test:in-memory": "cross-env VECTOR_STORE_TYPE=IN_MEMORY node -r ts-node/register/transpile-only src/runInMemory.ts",
-        "test:milvus": "cross-env VECTOR_STORE_TYPE=MILVUS node -r ts-node/register/transpile-only src/runBuildIndex.ts && cross-env VECTOR_STORE_TYPE=MILVUS node -r ts-node/register/transpile-only src/runQuery.ts",
-        "test:qdrant": "cross-env VECTOR_STORE_TYPE=QDRANT node -r ts-node/register/transpile-only src/runBuildIndex.ts && cross-env VECTOR_STORE_TYPE=QDRANT node -r ts-node/register/transpile-only src/runQuery.ts"
+        "test:local-storage": "cross-env VECTOR_STORE_TYPE=LOCAL_STORAGE node -r ts-node/register/transpile-only src/runBuildIndex.ts && npm run test:local-storage:query-only",
+        "test:local-storage:query-only": "cross-env VECTOR_STORE_TYPE=LOCAL_STORAGE node -r ts-node/register/transpile-only src/runQuery.ts",
+        "test:milvus": "cross-env VECTOR_STORE_TYPE=MILVUS node -r ts-node/register/transpile-only src/runBuildIndex.ts && npm run test:milvus:query-only",
+        "test:milvus:query-only": "cross-env VECTOR_STORE_TYPE=MILVUS node -r ts-node/register/transpile-only src/runQuery.ts",
+        "test:qdrant": "cross-env VECTOR_STORE_TYPE=QDRANT node -r ts-node/register/transpile-only src/runBuildIndex.ts && npm run test:qdrant:query-only",
+        "test:qdrant:query-only": "cross-env VECTOR_STORE_TYPE=QDRANT node -r ts-node/register/transpile-only src/runQuery.ts"
     },
     "keywords": [],
     "author": "",

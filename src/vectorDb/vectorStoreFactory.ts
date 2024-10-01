@@ -7,6 +7,7 @@ export const COLLECTION_NAME = "mashina";
 export enum VectorStoreType {
     QDRANT = "QDRANT",
     MILVUS = "MILVUS",
+    LOCAL_STORAGE = "LOCAL_STORAGE",
     INMEMORY = "IN_MEMORY"
 }
 
@@ -16,6 +17,7 @@ export const getVectorStore = (vectorStoreType: VectorStoreType): VectorStore =>
             return getQdrantVectorStore(COLLECTION_NAME);
         case VectorStoreType.MILVUS:
             return getMilvusVectorStore(COLLECTION_NAME);
+        case VectorStoreType.LOCAL_STORAGE:
         case VectorStoreType.INMEMORY:
         default:
             return undefined;
