@@ -1,5 +1,5 @@
 {
-    "name": "ollama-test",
+    "name": "rag-llamaindex-ollama",
     "version": "1.0.0",
     "private": true,
     "main": "index.js",
