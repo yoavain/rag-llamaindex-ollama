@@ -32,22 +32,22 @@
     },
     "dependencies": {
         "@xenova/transformers": "2.17.2",
-        "@zilliz/milvus2-sdk-node": "2.4.9",
+        "@zilliz/milvus2-sdk-node": "2.5.0",
         "dotenv": "16.4.5",
-        "llamaindex": "0.6.19"
+        "llamaindex": "0.8.23"
     },
     "devDependencies": {
         "@tsconfig/node20": "20.1.4",
-        "@types/node": "22.7.5",
-        "@typescript-eslint/eslint-plugin": "8.8.1",
-        "@typescript-eslint/parser": "8.8.1",
+        "@types/node": "22.10.1",
+        "@typescript-eslint/eslint-plugin": "8.16.0",
+        "@typescript-eslint/parser": "8.16.0",
         "cross-env": "7.0.3",
         "eslint": "8.57.1",
         "eslint-plugin-import": "2.31.0",
-        "eslint-plugin-jest": "28.8.3",
-        "eslint-plugin-n": "17.11.1",
+        "eslint-plugin-jest": "28.9.0",
+        "eslint-plugin-n": "17.14.0",
         "eslint-plugin-security": "1.7.1",
         "ts-node": "10.9.2",
-        "typescript": "5.6.3"
+        "typescript": "5.7.2"
     }
 }

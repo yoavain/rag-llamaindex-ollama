@@ -7,7 +7,6 @@ export const applyOllamaGlobals = () => {
     });
 
     Settings.embedModel = new HuggingFaceEmbedding({
-        modelType: "BAAI/bge-small-en-v1.5",
-        quantized: false
+        modelType: "BAAI/bge-small-en-v1.5"
     });
 };
